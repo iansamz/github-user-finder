@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import SearchBar from './components/SearchBar';
+import UserGithub from './components/UserGithub';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <SearchBar />
 
       {/* Github Users */}
+      <UserGithub />
 
       {/* Pagination */}
     </div>
