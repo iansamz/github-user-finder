@@ -10,7 +10,7 @@ export default function Navbar() {
               Github User Finder
             </p>
         </div>
-        <div className="md:flex items-center justify-end md:flex-1 lg:w-0">
+        <div className="flex items-center justify-end flex-1 lg:w-0">
 
           <ThemeSelector />
           <Github />
