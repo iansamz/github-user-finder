@@ -25,9 +25,7 @@ function App() {
   const onEnter = (e: KeyboardEvent) => {
     console.log(e.key)
     if(e.key ==='Enter'){
-
-      console.log(e.key)
-      // onSearch()
+      onSearch()
     }
   }
 
