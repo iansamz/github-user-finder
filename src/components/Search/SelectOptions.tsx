@@ -2,18 +2,9 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
-const sortOptions = [
-  { name: 'Best Match', sort: '', order: '' },
-  { name: 'Most Followers', sort: 'followers', order: 'desc' },
-  { name: 'Fewest Followers', sort: 'followers', order: 'asc' },
-  { name: 'Most Recently Joined', sort: 'joined', order: 'desc' },
-  { name: 'Least Recently Joined', sort: 'joined', order: 'asc' },
-  { name: 'Most Repositories', sort: 'repositories', order: 'desc' },
-  { name: 'Least Repositories', sort: 'repositories', order: 'asc' },
-]
 
-export default function SortSearchOptions() {
-  const [selected, setSelected] = useState(sortOptions[0])
+export default function SelectOptions({ options, selected, setSelected }: any) {
+
 
   return (
     <div className="w-full md:w-56">
@@ -35,12 +26,12 @@ export default function SortSearchOptions() {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-gray-200 dark:bg-gray-600 rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {sortOptions.map((sortOption, sortOptionIdx) => (
+              {options.map((sortOption: any, sortOptionIdx: number) => (
                 <Listbox.Option
                   key={sortOptionIdx}
                   className={({ active }) =>
                     `cursor-default select-none relative py-2 pl-10 pr-4 font-mono ${
-                      active ? 'text-gray-600 bg-gray-300 dark:text-gray-600 dark:gray-200' : 'text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-gray-600'
+                      active ? 'text-gray-600 bg-gray-300 dark:text-gray-600 dark:bg-gray-100' : 'text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-gray-600'
                     }`
                   }
                   value={sortOption}
@@ -53,7 +44,7 @@ export default function SortSearchOptions() {
                         {sortOption.name}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-600 dark:text-gray-300">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-600 dark:text-gray-900">
                           <CheckIcon className="w-5 h-5" aria-hidden="true" />
                         </span>
                       ) : null}
