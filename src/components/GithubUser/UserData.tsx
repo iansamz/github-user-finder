@@ -10,7 +10,7 @@ return (
         <div className="flex items-center  space-x-2 font-semibold text-white transition-colors duration-150 hover:text-blue-400">
           <LocationMarkerIcon className="h-5 w-5 text-slate-500  dark:text-gray-100" />
           <p className="font-mono text-sm font-medium text-gray-900 dark:text-gray-300">
-            {location ? location : "Not Available"}
+            {location ? location : 'Not Available'}
           </p>
         </div>
 
@@ -28,16 +28,16 @@ return (
               href={`https://twitter.com/${twitterUsername}`}
               target="_blank" rel="noreferrer"
             >
-              {twitterUsername ? twitterUsername : "Not Available"}
+              {twitterUsername ? twitterUsername : 'Not Available'}
             </a>
           </p>
         </div>
 
         <div className="flex items-center  space-x-2 font-semibold text-white transition-colors duration-150 hover:text-blue-400">
           <LinkIcon className="h-5 w-5 text-slate-500 dark:text-gray-100 " />
-          <p className="decoration-3 font-sm font-mono text-sm font-medium text-gray-900 underline dark:text-gray-300">
+          <p className="decoration-3 font-sm font-mono text-xs text-ellipsis overflow-hidden ... font-medium text-gray-900 underline dark:text-gray-300">
             <a href={`https://${blog}`} target="_blank" rel="noreferrer">
-              {blog ? blog :"Not Available"}
+              {blog ? blog : ''}
             </a>
           </p>
         </div>
