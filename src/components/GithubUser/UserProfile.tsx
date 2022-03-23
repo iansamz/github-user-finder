@@ -15,7 +15,7 @@ export default function UserProfile({ avatarURL, username, name, created_at, htm
                 <h4 className="text-lg font-bold text-gray-800 dark:text-gray-50 md:text-2xl">
                     {name}
                 </h4>
-                <a href={html_url} className="inline-block font-mono text-sm text-blue-400 hover:underline" target="_blank" rel="noreferrer">
+                <a href={html_url} className="inline-block font-mono text-sm text-blue-400 underline" target="_blank" rel="noreferrer">
                     {`@${username ? username :'Not Available'}`}
                 </a>
                 <p className="inline-block font-mono text-xs text-gray-800 dark:text-gray-50 pt-1">
