@@ -3,7 +3,7 @@ import { Loading } from './components/Loading';
 import Navbar from './components/Navbar';
 import SearchBar from './components/Search/SearchBar';
 import SelectOptions from './components/Search/SelectOptions';
-import UserGithub from './components/UserGithub';
+import GithubUsers from './components/GithubUsers';
 
 
 const sortOptions = [
@@ -34,12 +34,11 @@ const followersOptions = [
 
 function App() {
 
-  const [url, setUrl] = useState('');
-  const [users, setUsers] = useState('')
+  const [data, setData] = useState('')
   const [loading, setLoading] = useState(false)
   
 
-  const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState('iansamz')
   const userRef = useRef<(HTMLInputElement | null)>(null)
 
   const [sort, setSort] = useState(sortOptions[0])
@@ -60,14 +59,12 @@ function App() {
 
   useEffect(() => {
     setLoading(true)
-    searchText
-    ? setUrl(`https://api.github.com/search/users?q=${searchText}`)
-    : setUrl(`https://api.github.com/search/users?q=$iansamz`)
+    const url = `https://api.github.com/search/users?q=${searchText}`
 
     fetch(url)
       .then((res) => res.json())
-      .then((users) => {
-        setUsers(users)
+      .then((data) => {
+        setData(data)
         setLoading(false)
       })
   }, [searchText]);
@@ -108,11 +105,11 @@ function App() {
         <>
 
           {/* Github Users */}
-          <UserGithub />
+          <GithubUsers data={data} />
 
           {/* Pagination */}
         </>
-}
+      }
     </div>
   );
 }
