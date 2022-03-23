@@ -35,7 +35,7 @@ const followersOptions = [
 function App() {
 
   const [data, setData] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   
 
   const [searchText, setSearchText] = useState('iansamz')
@@ -82,7 +82,7 @@ function App() {
       />
 
       {/* TODO Search Options */}
-      <div 
+      {/* <div 
         className="align-items justify-between mx-auto mt-5 flex max-w-sm pb-2 md:max-w-4xl transition  duration-300 ease-in">
         <SelectOptions
           options={sortOptions}
@@ -99,10 +99,11 @@ function App() {
           setSelected={setFollowers}
           selected={followers}
         />
-      </div>
+      </div> */}
 
-      {loading ? <Loading /> :
-        <>
+      {loading 
+        ? <Loading /> 
+        :<>
 
           {/* Github Users */}
           <GithubUsers data={data} />
