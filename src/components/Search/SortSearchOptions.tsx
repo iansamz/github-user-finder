@@ -40,7 +40,7 @@ export default function SortSearchOptions() {
                   key={sortOptionIdx}
                   className={({ active }) =>
                     `cursor-default select-none relative py-2 pl-10 pr-4 font-mono ${
-                      active ? 'text-amber-900 bg-amber-100' : 'text-gray-900 dark:text-gray-300'
+                      active ? 'text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-gray-600' : 'text-gray-900 dark:text-gray-300'
                     }`
                   }
                   value={sortOption}
@@ -55,7 +55,7 @@ export default function SortSearchOptions() {
                         {sortOption.name}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-600 dark:text-gray-200">
                           <CheckIcon className="w-5 h-5" aria-hidden="true" />
                         </span>
                       ) : null}
