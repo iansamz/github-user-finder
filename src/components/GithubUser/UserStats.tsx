@@ -2,13 +2,13 @@ import React from 'react'
 
 export default function UserStats({ repos, followers, following }: any) {
   return (
-    <div className=" grid grid-cols-3 gap-6  divide-x divide-gray-700 rounded-xl bg-gray-50 py-4 dark:divide-gray-50 dark:bg-[#1e253f]">
+    <div className=" grid grid-cols-3 gap-6  divide-x divide-gray-700 rounded-xl bg-gray-50 py-4 dark:divide-gray-50 dark:bg-gray-900">
       <div className="align-items flex flex-col px-4 text-center">
         <h4 className="font-mono text-xs font-semibold text-gray-700 dark:text-gray-400 ">
           Repos
         </h4>
         <p className="font-mono text-lg font-extrabold text-gray-700 dark:text-gray-50 ">
-          {repos ? repos :"Not Available"}
+          {repos ? repos : 0}
         </p>
       </div>
 
@@ -17,7 +17,7 @@ export default function UserStats({ repos, followers, following }: any) {
           Followers
         </h4>
         <p className="font-mono text-lg font-extrabold text-gray-700 dark:text-gray-50 ">
-          {followers ? followers :"Not Available"}
+          {followers ? followers : 0}
         </p>
       </div>
 
@@ -26,7 +26,7 @@ export default function UserStats({ repos, followers, following }: any) {
           Following
         </h4>
         <p className="font-mono text-lg font-extrabold text-gray-700 dark:text-gray-50 ">
-          {following? following : "Not Available"}
+          {following? following : 0}
         </p>
       </div>
     </div>
