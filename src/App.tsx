@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import SearchBar from './components/Search/SearchBar';
 import SelectOptions from './components/Search/SelectOptions';
 import GithubUsers from './components/GithubUsers';
+import Pagination from './components/Pagination';
 
 
 const sortOptions = [
@@ -109,6 +110,7 @@ function App() {
           <GithubUsers data={data} />
 
           {/* Pagination */}
+          <Pagination />
         </>
       }
     </div>
