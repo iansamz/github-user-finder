@@ -7,9 +7,8 @@ import UserGithub from './components/UserGithub';
 function App() {
 
   const githubUsersURL = 'https://api.github.com/search/users'
-  let url = githubUsersURL + '?q=';
 
-
+  const [url, setUrl] = useState(githubUsersURL + '?q=');
   const [users, setUsers] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -23,7 +22,6 @@ function App() {
   }
 
   const onEnter = (e: KeyboardEvent) => {
-    console.log(e.key)
     if(e.key ==='Enter'){
       onSearch()
     }
@@ -31,7 +29,7 @@ function App() {
 
   useEffect(() => {
     setLoading(true)
-    url = `${githubUsersURL}?q=${searchText}`
+    setUrl(`${githubUsersURL}?q=${searchText}`)
 
     fetch(url)
       .then((res) => res.json())
