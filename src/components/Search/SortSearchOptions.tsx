@@ -20,10 +20,10 @@ export default function SortSearchOptions() {
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-gray-200 dark:bg-gray-600 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-500 sm:text-sm">
-            <span className="block truncate font-mono dark:text-gray-300">{selected.name}</span>
+            <span className="block truncate font-mono dark:text-gray-300 text-xs">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon
-                className="w-5 h-5 text-gray-400"
+                className="w-5 h-5 text-gray-400 dark:text-gray-600"
                 aria-hidden="true"
               />
             </span>
@@ -40,7 +40,7 @@ export default function SortSearchOptions() {
                   key={sortOptionIdx}
                   className={({ active }) =>
                     `cursor-default select-none relative py-2 pl-10 pr-4 font-mono ${
-                      active ? 'text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-gray-600' : 'text-gray-900 dark:text-gray-300'
+                      active ? 'text-gray-600 bg-gray-300 dark:text-gray-600 dark:gray-200' : 'text-gray-900 bg-gray-100 dark:text-gray-200 dark:bg-gray-600'
                     }`
                   }
                   value={sortOption}
@@ -48,14 +48,12 @@ export default function SortSearchOptions() {
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
+                        className={`block truncate text-xs`}
                       >
                         {sortOption.name}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-600 dark:text-gray-200">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-600 dark:text-gray-300">
                           <CheckIcon className="w-5 h-5" aria-hidden="true" />
                         </span>
                       ) : null}
