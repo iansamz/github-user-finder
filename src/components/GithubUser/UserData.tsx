@@ -36,7 +36,7 @@ return (
         <div className="flex items-center  space-x-2 font-semibold text-white transition-colors duration-150 hover:text-blue-400">
           <LinkIcon className="h-5 w-5 text-slate-500 dark:text-gray-100 " />
           <p className="decoration-3 font-sm font-mono text-xs text-ellipsis overflow-hidden ... font-medium text-gray-900 underline dark:text-gray-300">
-            <a href={`https://${blog}`} target="_blank" rel="noreferrer">
+            <a href={`${blog}`} target="_blank" rel="noreferrer">
               {blog ? blog : ''}
             </a>
           </p>
