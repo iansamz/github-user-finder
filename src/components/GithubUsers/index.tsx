@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import GithubUser from '../GithubUser'
 
 interface GithubUsersProps {
   data: any,
@@ -15,14 +16,22 @@ export default function GithubUsers({data}: GithubUsersProps) {
   return (
     <div className="max-w-4xl mx-auto px-2">
       <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-        <div className="flex justify-start lg:w-0 lg:flex-1">
+        <div className="flex justify-start flex-1">
             <p className="cursor-pointer font-bold text-gray-900 dark:text-white text-lg">
               {data.total_count} Github Users
             </p>
         </div>
-        <div className="flex items-center justify-end flex-1 lg:w-0">
-          
-        </div>
+      </div>
+      <div className="flex flex-col grow gap-5 mt-5">
+        {
+          data.items.map((user: any, userIdx: number) => {
+            return (
+              <Fragment key={userIdx}>
+                <GithubUser user={user} />
+              </Fragment>
+            )
+          })
+        }
       </div>
     </div>
   )
