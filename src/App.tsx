@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Loading } from './components/Loading';
 import Navbar from './components/Navbar';
 import SearchBar from './components/Search/SearchBar';
 import SelectOptions from './components/Search/SelectOptions';
@@ -38,7 +39,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   
 
-  const [searchText, setSearchText] = useState('iansamz')
+  const [searchText, setSearchText] = useState('')
   const userRef = useRef<(HTMLInputElement | null)>(null)
 
   const [sort, setSort] = useState(sortOptions[0])
@@ -59,12 +60,13 @@ function App() {
 
   useEffect(() => {
     setLoading(true)
-    setUrl(`https://api.github.com/search/users?q=${searchText}`)
+    searchText
+    ? setUrl(`https://api.github.com/search/users?q=${searchText}`)
+    : setUrl(`https://api.github.com/search/users?q=$iansamz`)
 
     fetch(url)
       .then((res) => res.json())
       .then((users) => {
-        console.log(users)
         setUsers(users)
         setLoading(false)
       })
@@ -72,7 +74,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-all">
-      {/* Header */}
+      {/* Navbar */}
       <Navbar />
 
       {/* Search Bar */}
@@ -83,34 +85,34 @@ function App() {
       />
 
       {/* TODO Search Options */}
-    <div 
-      className="align-items justify-between mx-auto mt-5 flex max-w-sm pb-2 md:max-w-4xl transition  duration-300 ease-in">
-      
-      <SelectOptions
-        options={sortOptions}
-        setSelected={setSort}
-        selected={sort}
-      />
+      <div 
+        className="align-items justify-between mx-auto mt-5 flex max-w-sm pb-2 md:max-w-4xl transition  duration-300 ease-in">
+        <SelectOptions
+          options={sortOptions}
+          setSelected={setSort}
+          selected={sort}
+        />
+        <SelectOptions
+          options={reposOptions}
+          setSelected={setRepos}
+          selected={repos}
+        />
+        <SelectOptions
+          options={followersOptions}
+          setSelected={setFollowers}
+          selected={followers}
+        />
+      </div>
 
-      <SelectOptions
-        options={reposOptions}
-        setSelected={setRepos}
-        selected={repos}
-      />
+      {loading ? <Loading /> :
+        <>
 
-      <SelectOptions
-        options={followersOptions}
-        setSelected={setFollowers}
-        selected={followers}
-      />
+          {/* Github Users */}
+          <UserGithub />
 
-      
-    </div>
-
-      {/* Github Users */}
-      <UserGithub />
-
-      {/* Pagination */}
+          {/* Pagination */}
+        </>
+}
     </div>
   );
 }
