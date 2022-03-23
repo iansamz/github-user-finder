@@ -19,7 +19,7 @@ export default function SearchBar({ userRef, onSearch, onEnter }: any) {
 
       <button
         onClick={onSearch}
-        className=" text-md mx-auto h-10 rounded-md bg-gray-50 px-4 font-mono font-medium text-gray-700 shadow-xl transition duration-300 ease-in hover:gray-700 hover:text-blue-100 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-700 "
+        className=" text-md mx-auto h-10 rounded-md bg-gray-50 px-4 font-mono font-medium text-gray-700 shadow-xl transition duration-300 ease-in hover:bg-gray-700 hover:text-blue-100 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-700 "
       >
         Search
       </button>
