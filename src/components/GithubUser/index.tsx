@@ -40,9 +40,9 @@ const GithubUser = ({ user }: any) => {
             html_url={userDetails.html_url}
           />
 
-          <div className="flex w-full md:grid md:col-span-2 flex-col space-y-6 px-6 py-3">
+          <div className=" w-full flex flex-col md:grid md:col-span-2 items-center md:items-start space-y-6 px-6 py-3">
             <UserBio bio={userDetails.bio} />
-            {/* <UserStats
+            <UserStats
               repos={userDetails.public_repos}
               followers={userDetails.followers}
               following={userDetails.following}
@@ -53,7 +53,7 @@ const GithubUser = ({ user }: any) => {
               twitterUsername={userDetails.twitter_username}
               blog={userDetails.blog}
               company={userDetails.company}
-            /> */}
+            />
           </div> 
         </div>
       }
