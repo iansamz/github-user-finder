@@ -14,7 +14,7 @@ export default function SelectOptions({ options, selected, setSelected }: any) {
             <span className="block truncate font-mono dark:text-gray-300 text-xs">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon
-                className="w-5 h-5 text-gray-400 dark:text-gray-600"
+                className="w-5 h-5 text-gray-400 dark:text-gray-200"
                 aria-hidden="true"
               />
             </span>
