@@ -60,7 +60,8 @@ function App() {
 
   useEffect(() => {
     setLoading(true)
-    const url = `https://api.github.com/search/users?q=${searchText}`
+
+    const url = `https://api.github.com/search/users?q=${searchText === '' ? 'iansamz' : searchText}`
 
     fetch(url)
       .then((res) => res.json())
