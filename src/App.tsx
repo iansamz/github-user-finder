@@ -45,6 +45,7 @@ function App() {
   const [sort, setSort] = useState(sortOptions[0])
   const [repos, setRepos] = useState(reposOptions[0])
   const [followers, setFollowers] = useState(followersOptions[0])
+  const [query, setQuery] = useState('')
 
   const onSearch = () => {
     if(userRef.current) {
@@ -84,8 +85,8 @@ function App() {
       />
 
       {/* TODO Search Options */}
-      {/* <div 
-        className="align-items justify-between mx-auto mt-5 flex max-w-sm pb-2 md:max-w-4xl transition  duration-300 ease-in">
+      <div 
+        className="flex flex-col md:flex-row md:align-items md:justify-between mx-auto mt-5 max-w-sm pb-2 md:max-w-4xl transition  duration-300 ease-in">
         <SelectOptions
           options={sortOptions}
           setSelected={setSort}
@@ -101,7 +102,7 @@ function App() {
           setSelected={setFollowers}
           selected={followers}
         />
-      </div> */}
+      </div>
 
       {loading 
         ? <Loading /> 
@@ -111,7 +112,7 @@ function App() {
           <GithubUsers data={data} />
 
           {/* Pagination */}
-          <Pagination />
+          {/* <Pagination /> */}
         </>
       }
     </div>
