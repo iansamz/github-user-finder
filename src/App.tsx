@@ -22,13 +22,19 @@ const reposOptions = [
   { name: '10 > Repos', repositories: 10 },
   { name: '50 > Repos', repositories: 50 },
   { name: '100 > Repos', repositories: 100  },
+  { name: '500 > Repos', repositories: 500  },
 ]
 
 const followersOptions = [
   { name: 'Followers', followers: '' },
-  { name: '10 > Repos', followers: 10 },
-  { name: '50 > Repos', followers: 50 },
-  { name: '100 > Repos', followers: 100  },
+  { name: '10 > Followers', followers: 10 },
+  { name: '50 > Followers', followers: 50 },
+  { name: '100 > Followers', followers: 100  },
+  { name: '200 > Followers', followers: 200  },
+  { name: '500 > Followers', followers: 500  },
+  { name: '1000 > Followers', followers: 1000  },
+  { name: '5000 > Followers', followers: 5000  },
+  { name: '10000 > Followers', followers: 10000  },
 ]
 
 
@@ -45,7 +51,6 @@ function App() {
   const [sort, setSort] = useState(sortOptions[0])
   const [repos, setRepos] = useState(reposOptions[0])
   const [followers, setFollowers] = useState(followersOptions[0])
-  const [query, setQuery] = useState('')
 
   const onSearch = () => {
     if(userRef.current) {
@@ -62,7 +67,12 @@ function App() {
   useEffect(() => {
     setLoading(true)
 
-    const url = `https://api.github.com/search/users?q=${searchText === '' ? 'iansamz' : searchText}`
+    const followersQuery = followers.followers ? `+followers:>${followers.followers}` : ''
+    const reposQuery = repos.repositories ? `+repos:>${repos.repositories}` : ''
+    const sortQuery = sort.sort ? `&sort=${sort.sort}&order=${sort.order}` : ''
+
+
+    const url = `https://api.github.com/search/users?q=${searchText === '' ? 'iansamz' : searchText}${reposQuery}${followersQuery}${sortQuery}`
 
     fetch(url)
       .then((res) => res.json())
@@ -70,7 +80,7 @@ function App() {
         setData(data)
         setLoading(false)
       })
-  }, [searchText]);
+  }, [searchText, sort, repos, followers]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-all">

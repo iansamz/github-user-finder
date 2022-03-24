@@ -17,7 +17,6 @@ const GithubUser = ({ user }: any) => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         setUserDetails(data)
         setLoading(false)
       })
