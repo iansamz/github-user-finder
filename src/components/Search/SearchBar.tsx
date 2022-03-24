@@ -4,7 +4,7 @@ export default function SearchBar({ userRef, onSearch, onEnter }: any) {
   return (
 
     <div 
-      className="align-items mx-auto mt-5 my-2 flex max-w-sm rounded-lg bg-gray-200 dark:bg-gray-600 p-2 pb-2 md:max-w-4xl transition  duration-300 ease-in">
+      className="align-items mx-auto mt-5 my-2 flex max-w-sm rounded-lg bg-gray-200 dark:bg-gray-600 p-2 pb-2 md:max-w-4xl px-2 transition  duration-300 ease-in">
       
       <SearchIcon  
         className="mt-3 ml-2 h-6 w-6 dark:text-gray-200" />

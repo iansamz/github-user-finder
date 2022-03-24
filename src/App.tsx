@@ -6,7 +6,6 @@ import SelectOptions from './components/Search/SelectOptions';
 import GithubUsers from './components/GithubUsers';
 import Pagination from './components/Pagination';
 
-
 const sortOptions = [
   { name: 'Best Match', sort: '', order: '' },
   { name: 'Most Followers', sort: 'followers', order: 'desc' },
@@ -37,20 +36,13 @@ const followersOptions = [
   { name: '10000 > Followers', followers: 10000  },
 ]
 
-
-
 function App() {
 
   const [data, setData] = useState('')
   const [loading, setLoading] = useState(true)
   
-
   const [searchText, setSearchText] = useState('iansamz')
   const userRef = useRef<(HTMLInputElement | null)>(null)
-
-  const [sort, setSort] = useState(sortOptions[0])
-  const [repos, setRepos] = useState(reposOptions[0])
-  const [followers, setFollowers] = useState(followersOptions[0])
 
   const onSearch = () => {
     if(userRef.current) {
@@ -63,6 +55,12 @@ function App() {
       onSearch()
     }
   }
+
+  const [sort, setSort] = useState(sortOptions[0])
+  const [repos, setRepos] = useState(reposOptions[0])
+  const [followers, setFollowers] = useState(followersOptions[0])
+
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     setLoading(true)
@@ -118,11 +116,24 @@ function App() {
         ? <Loading /> 
         :<>
 
+          {/* Pagination */}
+          <Pagination 
+            page={page}
+            setPage={setPage}
+            data={data}
+            borderTop={false}
+          />
+
           {/* Github Users */}
           <GithubUsers data={data} />
 
           {/* Pagination */}
-          {/* <Pagination /> */}
+          <Pagination 
+            page={page}
+            setPage={setPage}
+            data={data}
+            borderTop={true}
+          />
         </>
       }
     </div>
