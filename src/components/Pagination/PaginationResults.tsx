@@ -4,7 +4,7 @@ export default function PaginationResults({ data, page, perPage }: any) {
 
   const getResults = () => {
     const start = (page.value === 1) 
-      ? 1 
+      ? data.total_count === 0 ? 0 : 1
       : (page.value - 1) * perPage.value + 1
 
     const end = ((page.value * perPage.value) > data.total_count)
