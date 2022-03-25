@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 import GithubUser from '../GithubUser'
-import Pagination from '../Pagination'
 
 interface GithubUsersProps {
   data: any,
