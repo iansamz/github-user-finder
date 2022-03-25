@@ -16,7 +16,7 @@ export default function Pagination({page, setPage, pages, perPage, setPerPage, p
 
         <PaginationResults data={data} page={page} perPage={perPage} />
 
-        <div className="flex justify-end flex-1">
+        <div className="flex justify-end flex-1 space-x-2">
           <SelectOptions options={perPageOptions} selected={perPage} setSelected={setPerPage} />
           {/* <SelectOptions options={pages} selected={page} setSelected={setPage} /> */}
           <PaginationButtons page={page} setPage={setPage} pages={pages} />
