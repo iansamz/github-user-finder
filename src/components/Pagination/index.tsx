@@ -9,7 +9,7 @@ export default function Pagination({page, setPage, pages, perPage, setPerPage, p
       <div 
       className={
         classNames(
-          "flex justify-between items-center border-gray-100 py-3 md:justify-start md:space-x-10", 
+          "flex flex-col md:flex-row justify-between items-center border-gray-100 py-3 md:justify-start md:space-x-10", 
           { 'border-t': borderTop },
           { 'border-b': !borderTop })
       }>
