@@ -3,13 +3,13 @@ import React from 'react'
 export default function PaginationResults({ data, page, perPage }: any) {
 
   const getResults = () => {
-    const start = (page === 1) 
+    const start = (page.value === 1) 
       ? 1 
-      : (page - 1) * perPage.value + 1
+      : (page.value - 1) * perPage.value + 1
 
-    const end = ((page * perPage.value) > data.total_count)
+    const end = ((page.value * perPage.value) > data.total_count)
       ? data.total_count
-      : page * perPage.value
+      : page.value * perPage.value
 
     return `Showing ${start} - ${end} of ${data.total_count} Total Results`
   }

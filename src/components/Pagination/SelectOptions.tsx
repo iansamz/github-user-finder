@@ -4,10 +4,8 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 
 export default function SelectOptions({ options, selected, setSelected }: any) {
-
-
   return (
-    <div className="w-full md:w-56">
+    <div className="w-full md:w-32">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-gray-200 dark:bg-gray-600 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-500 sm:text-sm">

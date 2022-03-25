@@ -69,10 +69,23 @@ function App() {
   const [repos, setRepos] = useState(reposOptions[0])
   const [followers, setFollowers] = useState(followersOptions[0])
 
-  const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(perPageOptions[2])
+  const [perPage, setPerPage] = useState(perPageOptions[0])
+  const [pages, setPageOptions] = useState([{ name: '1', value: 1 }])
+  const [page, setPage] = useState(pages[0])
+
 
   useEffect(() => {
+
+    const updatePageOptions = (data: any) => {
+      const pages = []
+      for (let i = 1; i <= Math.ceil(data.total_count / perPage.value); i++) {
+        pages.push({
+          name: `${i}`,
+          value: i
+        })
+      }
+      setPageOptions(pages)
+    }
     setLoading(true)
 
     const nameQuery = `${searchText === '' ? 'iansamz' : searchText}`
@@ -83,7 +96,7 @@ function App() {
     const optionsQuery = `${reposQuery}${followersQuery}${sortQuery}`;
 
     const perPageQuery = perPage ? `&per_page=${perPage.value}` : '';
-    const pageQuery = page ? `&page=${page}` : '';
+    const pageQuery = page ? `&page=${page.value}` : '';
 
     const url = `https://api.github.com/search/users?q=${nameQuery}${optionsQuery}${perPageQuery}${pageQuery}`;
 
@@ -91,6 +104,7 @@ function App() {
     .then((res) => res.json())
     .then((data) => {
       setData(data)
+      updatePageOptions(data)
       setLoading(false)
     })
 
@@ -136,6 +150,7 @@ function App() {
           <Pagination 
             page={page}
             setPage={setPage}
+            pages={pages}
             perPageOptions={perPageOptions}
             perPage={perPage}
             setPerPage={setPerPage}
@@ -150,6 +165,7 @@ function App() {
           <Pagination 
             page={page}
             setPage={setPage}
+            pages={pages}
             perPageOptions={perPageOptions}
             perPage={perPage}
             setPerPage={setPerPage}
