@@ -5,6 +5,7 @@ import SearchBar from './components/Search/SearchBar';
 import SelectOptions from './components/Search/SelectOptions';
 import GithubUsers from './components/GithubUsers';
 import Pagination from './components/Pagination';
+import ErrorContainer from './components/ErrorContainer';
 
 const sortOptions = [
   { name: 'Best Match', sort: '', order: '' },
@@ -72,6 +73,7 @@ function App() {
   const [perPage, setPerPage] = useState(perPageOptions[0])
   const [pages, setPageOptions] = useState([{ name: '1', value: 1 }])
   const [page, setPage] = useState(pages[0])
+  const [error, setError] = useState({ error: false, message: '' })
 
 
   useEffect(() => {
@@ -86,6 +88,7 @@ function App() {
       }
       setPageOptions(pages)
     }
+
     setLoading(true)
 
     const nameQuery = `${searchText === '' ? 'iansamz' : searchText}`
@@ -103,8 +106,18 @@ function App() {
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      setData(data)
-      updatePageOptions(data)
+      if(data.hasOwnProperty('items')){
+        setError({ error: false, message: '' })
+        setData(data)
+        updatePageOptions(data)
+      }else{
+        setError({ error: true, message: data.message })
+      }
+      setLoading(false)
+    })
+    .catch((error) => {
+      setError({ error: true, message: error.message })
+      console.log(error)
       setLoading(false)
     })
 
@@ -141,11 +154,9 @@ function App() {
           selected={followers}
         />
       </div>
-
-      {loading 
+      {loading
         ? <Loading /> 
-        :<>
-
+        : <>
           {/* Pagination */}
           <Pagination 
             page={page}
@@ -157,9 +168,14 @@ function App() {
             data={data}
             borderTop={false}
           />
-
-          {/* Github Users */}
-          <GithubUsers data={data} />
+          { error.error 
+            ? (
+              <ErrorContainer errorMessage={error.message} />
+            ) 
+            : (
+              <GithubUsers data={data} />
+            )
+          }
 
           {/* Pagination */}
           <Pagination 

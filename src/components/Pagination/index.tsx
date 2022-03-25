@@ -5,7 +5,7 @@ import PaginationResults from './PaginationResults'
 
 export default function Pagination({page, setPage, pages, perPage, setPerPage, perPageOptions, data, borderTop}: any) {
   return (
-    <div className="max-w-4xl mx-auto px-2 my-4 hidden:sm">
+    <div className="max-w-4xl mx-auto px-2 py-4">
       <div 
       className={
         classNames(
@@ -18,7 +18,9 @@ export default function Pagination({page, setPage, pages, perPage, setPerPage, p
 
         <div className="flex justify-end flex-1 space-x-2">
           <SelectOptions options={perPageOptions} selected={perPage} setSelected={setPerPage} />
-          {/* <SelectOptions options={pages} selected={page} setSelected={setPage} /> */}
+          {/* TODO: select page 
+            <SelectOptions options={pages} selected={page} setSelected={setPage} /> 
+          */}
           <PaginationButtons page={page} setPage={setPage} pages={pages} />
         </div>
 
