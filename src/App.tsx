@@ -36,6 +36,14 @@ const followersOptions = [
   { name: '10000 > Followers', followers: 10000  },
 ]
 
+const perPageOptions = [
+  { name: '10', value: 10 },
+  { name: '20', value: 20 },
+  { name: '30', value: 30 },
+  { name: '50', value: 50 },
+  { name: '100', value: 100 },
+] 
+
 function App() {
 
   const [data, setData] = useState('')
@@ -61,24 +69,31 @@ function App() {
   const [followers, setFollowers] = useState(followersOptions[0])
 
   const [page, setPage] = useState(1)
+  const [perPage, setPerPage] = useState(perPageOptions[2])
 
   useEffect(() => {
     setLoading(true)
 
+    const nameQuery = `${searchText === '' ? 'iansamz' : searchText}`
+
     const followersQuery = followers.followers ? `+followers:>${followers.followers}` : ''
     const reposQuery = repos.repositories ? `+repos:>${repos.repositories}` : ''
     const sortQuery = sort.sort ? `&sort=${sort.sort}&order=${sort.order}` : ''
+    const optionsQuery = `${reposQuery}${followersQuery}${sortQuery}`;
 
+    const perPageQuery = perPage ? `&per_page=${perPage.value}` : '';
+    const pageQuery = page ? `&page=${page}` : '';
 
-    const url = `https://api.github.com/search/users?q=${searchText === '' ? 'iansamz' : searchText}${reposQuery}${followersQuery}${sortQuery}`
+    const url = `https://api.github.com/search/users?q=${nameQuery}${optionsQuery}${perPageQuery}${pageQuery}`;
 
     fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data)
-        setLoading(false)
-      })
-  }, [searchText, sort, repos, followers]);
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data)
+      setLoading(false)
+    })
+
+  }, [searchText, sort, repos, followers, page, perPage]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-all">
@@ -92,7 +107,7 @@ function App() {
         onEnter={onEnter}
       />
 
-      {/* TODO Search Options */}
+      {/* Search Options */}
       <div 
         className="flex flex-col md:flex-row md:align-items md:justify-between mx-auto mt-5 max-w-sm pb-2 md:max-w-4xl transition  duration-300 ease-in">
         <SelectOptions
@@ -120,6 +135,9 @@ function App() {
           <Pagination 
             page={page}
             setPage={setPage}
+            perPageOptions={perPageOptions}
+            perPage={perPage}
+            setPerPage={setPerPage}
             data={data}
             borderTop={false}
           />
@@ -131,6 +149,9 @@ function App() {
           <Pagination 
             page={page}
             setPage={setPage}
+            perPageOptions={perPageOptions}
+            perPage={perPage}
+            setPerPage={setPerPage}
             data={data}
             borderTop={true}
           />
